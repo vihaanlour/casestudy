@@ -1,0 +1,211 @@
+<html>
+  <head>
+    <title>Case Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <center>
+        <div class="col-xs-12 headerDiv">
+          <h2>
+            Case Study
+            <img
+              src="data:image/jpeg;base64,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"
+            />
+          </h2>
+        </div>
+        <ol>
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Bottle.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holding a green bottle</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Bike.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>Undefined</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Car.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holdinga water bottle</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Pen.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holding a Toothbrush</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Pillow.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A close up of a toy</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="SketchBook.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holding a book</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Phone.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holding a peice of luggage</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Pouch.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span> A person taking a selfie</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Remote.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A hand holding a reomte control</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+
+          <div class="textImagesAndResult">
+            <li><b>Text Image -</b><img class="img-Responsive" src="Diary.jpg" /></li>
+            <h5>
+              Output on <b>Microsoft Azure</b>-
+              <span>A close up of a peice of paper</span>
+            </h5>
+            <h5>
+              Output on <b>Mobilenet Model</b>-
+              <span></span>
+            </h5>
+            <div class="bob3">
+              <h4>Result -</h4>
+              <hr />
+              <h4></h4>
+            </div>
+          </div>
+        </ol>
+
+        <div class="col-xs-12 footerDiv">
+          <h4 class="col-sm-6 col-xs-12">
+            <img src="blub.gif" />
+            <span id="objectName"></span>
+          </h4>
+        </div>
+
+        <div class="footer">Developed by Vihaan</div>
+      </center>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
